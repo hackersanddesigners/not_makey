@@ -1,0 +1,28 @@
+Partlist
+
+Exported from esp32_makey_shield.brd at 27/01/2023 16:15
+
+EAGLE Version 9.6.2 Copyright (c) 1988-2020 Autodesk, Inc.
+
+Assembly variant: 
+
+Part        Value           Package                Library         Position (mil)        Orientation		Description
+	
+
+ADCPINS     TSW-115-07-G-S  TSW-115-XX-G-S         con-samtec      (460 918)             R90			15 pin female single row header 2.54 pitch      	
+MOSTLYEMPTY TSW-115-07-G-S  TSW-115-XX-G-S         con-samtec      (1460 919)            R90			15 pin female single row header 2.54 pitch
+R1          22M             0204/7                 rcl             (716 1416)            R180			22M ohm resistor (throughhole)
+R2          22M             0204/7                 rcl             (716 1316)            R180			22M ohm resistor (throughhole)
+R3          22M             0204/7                 rcl             (716 1216)            R180			22M ohm resistor (throughhole)
+R4          22M             0204/7                 rcl             (716 1116)            R180			22M ohm resistor (throughhole)
+R5          22M             0204/7                 rcl             (716 1016)            R180			22M ohm resistor (throughhole)
+R6          22M             0204/7                 rcl             (716 916)             R180			22M ohm resistor (throughhole)
+R7          22M             0204/7                 rcl             (716 816)             R180			22M ohm resistor (throughhole)
+R8          22M             0204/7                 rcl             (716 716)             R180			22M ohm resistor (throughhole)
+R9          22M             0204/7                 rcl             (716 616)             R180			22M ohm resistor (throughhole)
+R10         22M             0204/7                 rcl             (716 516)             R180			22M ohm resistor (throughhole)
+R11         22M             0204/7                 rcl             (716 416)             R180			22M ohm resistor (throughhole)
+R12         22M             0204/7                 rcl             (716 316)             R180			22M ohm resistor (throughhole)
+R13         22M             0204/7                 rcl             (1216 1416)           R0			22M ohm resistor (throughhole)
+R14         22M             0204/7                 rcl             (1216 1216)           R0			22M ohm resistor (throughhole)
+U1          ESP32-DEVKIT-V1 MODULE_ESP32_DEVKIT_V1 ESP32-DEVKIT-V1 (962 1014)            R0			ESP32-WROOM devkit (e.g. espressif)	
