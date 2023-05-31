@@ -4,7 +4,10 @@ This repository describes how to manufacture a shield for the ESP32, and the cod
 
 ## tools
 
-* Roland Modela MDX-20 with fabmodules for pcb production installed, such as this setup at Waag fablab [decribed here](https://fablab.waag.org/PCB%20Milling/How%20to%20use%20the%20Modela%20MDX-20/). Note that this process doesn't require Gerber files, instead you need a 1000 DPI black and monochrome image of the TOP and or BOTTOM of the board, and a separate file with holes and the board outline).
+* Roland Modela MDX-20 with MODS for pcb production installed (only works in Chrome) modsproject.org
+
+Note that this process doesn't require Gerber files, instead you need a 1000 DPI black and monochrome images of the bottom of the board, and separate files with holes and the board outline).
+
 * Soldering station, solder, clippers
 
 ## bill of materials
@@ -43,26 +46,64 @@ This repository describes how to manufacture a shield for the ESP32, and the cod
 
 <img src="./images/wiring.png" alt="header" width="500"> 
 
-## schematic
+## schematic v.1
 
 <img src="./images/schematic.png" alt="header" width="600"> 
 
-## board layout 
+## board v.1 
 
 <img src="./images/simple_boardlayout_bottom.png" alt="header" width="500"> 
 
 ## fabrication files for Roland modela MDX-20
 
-* exported from Eagle at 1000 dpi in monochrome
-* BOTTOM - exported layers: bottom, via's, holes (flip horizontally in img editor)
-* CUT - exported layers:holes & board dimension (place rect larger than board on unused layer or board outline disappears when exporting the image)
+###**Exporting the design from Eagle**
 
-### Milling the PCB
+* exported as PNG images from Eagle at 1000 dpi in monochrome
+	* MILLING - traces - exported layers: bottom, pads, via's
+	* DRILLING - holes and board outline - exported layers: vias & 
 
-See also: [http://fabacademy.org/archives/2015/eu/students/bogers.loes/06electronicsdesign.html](http://fabacademy.org/archives/2015/eu/students/bogers.loes/06electronicsdesign.html)
+###**Editing the images**
+
+* resize images to 50% in photoshop (something happens in the export from eagle)
+
+####*Bottom_v1.png*
+
+* deleted little bits and text with bucket tool
+* added new text (that is not in mirror image :D) 
+
+<img src="./fabrication/v0/bottom_v0.pnG" alt="header" width="400"> 
+
+
+####*Holes_v1.png* 
+
+* Deleted the big 4 holes on top and bottom of the board, they're not needed but came with the footprint
+
+<img src="./fabrication/v0/holes_v0.png" alt="header" width="400"> 
+
+
+####*Dimension_v1.png*
+
+* manually drew a rectangle larger than the board outline to make sure the board dimension is visible in the image (otherwise it's right at the edge)
+
+<img src="./fabrication/v0/dimension_v0.png" alt="header" width="400"> 
+
+### Wishes board design v.2
+
+* no pads but connector pins? (saves space)
+* bigger footprint for resistors (min .8mm drill holes, thicked pads)
+* more freehand design
+	* brush size: min 24 pt (black lines on white board)
+	* prepare photoshop file with layers of footprint 
+	
+
+## Milling the PCB
+
+<img src="./fabrication/v0/modsprojectPCB_dimension.png" alt="header"> 
+
 
 * Mill the [bottom.png file](./fabrication/bottom.png)
-* Drill holes and outline [cut.png file](./fabrication/cut.png)
+* Drill holes [cut.png file](./fabrication/cut.png)
+* Mill outline [outline.png file](./fabrication/?????)
 * Wash
 * Test connections
 * Make corrections

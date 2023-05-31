@@ -1,0 +1,69 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww14900\viewh19580\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs38 \cf0 IMAGE EXPORT\
+Made size too big, scale to 50% \
+Mods takes SVGs or PNGs (1000DPI)\
+\
+The drill holes didn\'92t show up so I added them manually in eagle (GAH!)\
+\
+>>> TO DO bcs I had to change stuff I didn\'92t clean up the png with the letters and so on. Bcs I put it on the bottom they\'92re inverse :D\
+\
+BOTTOM\
+Layers: Bottom, Pads, Vias\
+\
+DRILL/OUTLINE\
+Layers: Via and Dimension\
+\
+MODS\
+In chrome: modsproject.org\
+Open the presets for PCB\
+\
+MOUNTING BOARD\
+The usual, clean, double sided tape, not at the edge, press\
+>> measure board thickness of board and check it matches settings in mods\
+\
+WEB SERIAL\
+Select USB port\
+Check connection by moving head via mods\
+\
+ORIGIN\
+Find origin (zero is bottom left)\
+Use Roland MDX module > change the numbers, not arrows!\
+Take pic of origin\
+\
+ZEROING Z\
+Do this manually\
+Move to origin\
+Lower the bit until it touches the copper\
+\
+MILL RASTER 2D\
+0.4 tool diameter for traces\
+0.8 tool diameter for dimension and holes\
+\
+CALCULATE AFTER EVERY CHANGE\
+\
+CURRENT BOARD VERSION\
+\
+Small holes for resistors are <.8mm so can\'92t calculate when that bit is selected\
+Instead: selected .4mm and used a .4mm milling bit instead of drill\
+Did one round with this bit\
+Then selected to .8mm to run the path with only the bigger holes\
+\
+Dimension didn\'92t show up because it couldn\'92t see the thin line\
+Used bucket tool to make BW image with clear areas instead and deleted holes\
+Ran the dimension job separately\
+\
+JOBS\
+\
+Set PCB default module\
+- mill traces 1/64 \
+- mill outline 1/32\
+Make sure to select the right one and check in \'93view tool path\'94 module \
+\
+\
+}

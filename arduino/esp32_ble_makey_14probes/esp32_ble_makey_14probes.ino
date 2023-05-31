@@ -1,5 +1,5 @@
 /*
- *  
+
   Sample program for ESP32 acting as a Bluetooth keyboard
   https://gist.github.com/manuelbl/66f059effc8a7be148adb1f104666467
 
@@ -14,12 +14,12 @@
   1. Go to your computers/phones settings
   2. Ensure Bluetooth is turned on
   3. Scan for Bluetooth devices
-  4. Connect to the device called "ESP32 Keyboard" (you can change this name in the code)
+  4. Connect to the device called "NOT_MAKEY" (you can change this name in the code)
   5. Open an empty document in a text editor
   6. Press the buttons attached to the ESP32 to generate different letters
-  
+
   WIRING DIAGRAM
-    14 DIY resistive "switches" you might use with makey makey are connected to GPIO pins that have ADC
+    14 DIY capacitive "switches" you might use with makey makey are connected to GPIO pins that have ADC
     One leg of each switch goes to a 22M pullup resistor (connect to 3V3 rail)
     The other leg of the "switch" should touch GND rail
     ADC resolution on ESP32 is 0-4095! https://randomnerdtutorials.com/esp32-adc-analog-read-arduino-ide/
@@ -31,7 +31,7 @@
                                  | GND     GND |
   left | A | = 3V3 <---/\/\/\--- | D15     D13 | ---/\/\/\---> 3v3 = N | change font
                     BUILTIN LED  | D2      D12 | ---/\/\/\---> 3V3 = P | go to next block
- Right| Q | = 3V3 <---/\/\/\---  | D4      D14 | ---/\/\/\---> 3V3 = T | generate PDF
+  Right| Q | = 3V3 <---/\/\/\--- | D4      D14 | ---/\/\/\---> 3V3 = T | generate PDF
                                  | RX2     D27 | ---/\/\/\---> 3V3 = R | decrease letter spacing
                                  | TX2     D26 | ---/\/\/\---> 3V3 = Y | increase letter spacing
                                  | D5      D25 | ---/\/\/\---> 3V3 = E | decrease block width
@@ -60,7 +60,7 @@ const int ReleasedMinThreshold = 2700;
 const byte PinCount = 14;
 
 // how esp shows up in bluetooth device list
-#define DEVICE_NAME "ESP32 Keyboard"
+#define DEVICE_NAME "NOT_MAKEY"
 
 // array w numbers of all 14 pins with ADC (pin2 doesnt work w BLE)
 const byte InputPins[PinCount] = {15, 4, 13, 12, 14, 27, 26, 25, 33, 32, 35, 34, 39, 36}; // ONLY ADC PINS!
