@@ -3,7 +3,7 @@
   Sample program for ESP32 acting as a Bluetooth keyboard
   https://gist.github.com/manuelbl/66f059effc8a7be148adb1f104666467
 
-  Modified by Loes (2022) To work with PJ machine
+  Modified by Loes (2022) To work with Sarah Garcin's PJ machine
 
   This program lets an ESP32 act as a keyboard connected via Bluetooth.
   When a button attached to the ESP32 is pressed, it will generate the key strokes
@@ -57,6 +57,7 @@
 // Define values that constitute Pressed and Released (find values w other sketch)
 const int PressedMaxThreshold = 2400;
 const int ReleasedMinThreshold = 2700;
+
 const byte PinCount = 14;
 
 // how esp shows up in bluetooth device list

@@ -2,6 +2,13 @@
 
 This repository describes how to manufacture a shield for the ESP32, and the code to program pins as resistive touch sensors that each send strings to a laptop over Bluetooth. It is programmed to send letters that correspond with PJ machine keycodes used in e.g. this workshop https://github.com/hackersanddesigners/interfacial-workout-23
 
+On the board you can see which pins are connected to which letter. Pins without a letter are free to use for something else (e.g. sensors, LEDs), additional code can be written inside the sketch. 
+
+To send a letter to the laptop: 
+- connect laptop to bluetooth device "NOT_MAKEY" (esp and shield should be connected to a power source)
+- open a textpad on the laptop
+- touch a probe connected to one of the letter pins, and a probe connected to 3V3 to send a letter via Bluetooth
+
 ## acknowledgments
 
 * Joylab's Jay Silver & Erik Rosenbaum's *MakeyMakey board* [https://github.com/sparkfun/MaKeyMaKey](https://github.com/sparkfun/MaKeyMaKey)
@@ -9,7 +16,99 @@ This repository describes how to manufacture a shield for the ESP32, and the cod
 * Jack Christensen's [moving average library](https://github.com/JChristensen/movingAvg)
 
 
-# v1 via fablab
+# v2 via Aisler board house
+
+
+## bill of materials v.2 
+
+* an ESP32 WROOM devkit, e.g. [this one from Espressif](https://www.espressif.com/en/products/modules/esp32) €14,49 at [Reichelt](https://www.reichelt.nl/nl/nl/entwicklungsboard-esp32-wroom-32e-esp32devkitc32e-p341303.html?&trstct=pos_1&nbc=1)
+* mini usb programming cable e.g. [this one at kiwi](https://www.kiwi-electronics.com/nl/microusb-kabel-usb-a-naar-micro-b-15cm-3240?search=usb-A%20naar%20micro-b) €1,25
+* 4x single row break-away female header strips (you need 4x a single row strips of 15 positions) e.g. [this one](https://www.reichelt.nl/nl/nl/vrouwelijke-connector-2-54mm-1x20-scheidbaar-vertind-fis-bl1-20-z-p283794.html?&nbc=1) at Reichelt €1,22 each
+* 14x 22Mohm resistors e.g. [this one](https://nl.farnell.com/yageo/hhv-25jt-52-22m/res-22m-5-250mw-axial-metal-film/dp/1779371?st=22m%20ohm%20resistor) at Farnell €0,07 each. These can be hard to find in DIY shops you might need to look at Farnell, Mouser, or get some from China :(
+* 14x (or more) MM dupont jumper wires to access the pins
+* alligator clips to connect connective stuff to the board. 
+
+## schematic
+
+The schematic is the same
+
+<img src="./images/schematic.png" alt="schematic v2" width="500"> 
+
+## board design
+
+The silkscreen is a bit more elaborate so you can see what character corresponds with which pin in the code.
+
+<img src="./images/bot_aisler.png" alt="schematic v2" width="200"> 
+
+<img src="./images/top_aisler.png" alt="schematic v2" width="200"> 
+
+## board house link
+
+[https://aisler.net/p/JORJIJIP](https://aisler.net/p/JORJIJIP)
+
+## soldering
+
+For this board, you'll need to have the inner 2 connector rows facing down to connect to the ESP32 
+
+The outer two connector rows are facing outward, to give access to the pins via jumper wires
+
+<img src="./images/soldering_guide.png" alt="diagram with components in the right place" width="900">
+
+
+
+## programming the ESP
+
+[Arduino code](./arduino/esp32_ble_makey_14probes/esp32_ble_makey_14probes.ino)
+
+This program lets an ESP32 act as a keyboard connected via Bluetooth.
+When a button attached to the ESP32 is pressed, it will generate the key strokes
+
+In order to receive the message, add the ESP32 as a Bluetooth keyboard of your computer or mobile phone:
+
+  1. Go to your computers/phones settings
+  2. Ensure Bluetooth is turned on
+  3. Scan for Bluetooth devices
+  4. Connect to the device called "NOT_MAKEY" (you can change this name in the code)
+  5. Open an empty document in a text editor
+  6. Press the buttons attached to the ESP32 to generate different letters
+ 
+If the probes don't respond too well you can troubleshoot and calibrate with simple code using the moving average filter and printing it to the serial. 
+
+[Moving AVG testcode](./arduino/esp32_movingAVG_analogread/esp32_movingAVG_analogread.ino)
+ 
+ 
+### Select the board
+
+* Open Arduino preferences pane and paste the following URL in the box "Additional Boards Manager URLs"
+
+```https://espressif.github.io/arduino-esp32/package_esp32_index.json```
+
+* Open the Boards Manager. Go to Tools > Board > Boards Manager… 
+* Search for "ESP32" and press install for "ESP32 by Espressif Systems"
+* Go to > Tools > Board > ESP32 Arduino > ESP32 Devkit
+* If it doesnt' show up, restart the Arduino IDE
+
+### Compile the code to check libs are working
+
+Compile to check if you have all the libraries. If not, check the console for troubleshooting. If necessary, install these: 
+
+* MovingAVG library by Jack Christensen (via library manager)
+* [BLE library](https://reference.arduino.cc/reference/en/libraries/esp32-ble-arduino/) (via library manger)
+* [ESP32 libraries](https://github.com/espressif/arduino-esp32/tree/master/libraries) (I believe these are installed automaticallly with the ESP32 board files, so shouldn't give any problems).
+
+### Testing 
+
+* Connect the board to the computer with a USB data cable and upload the code
+* Connect the ESP to the shield, taking care the orientation is correct. 
+* Connect probes, e.g. jumper wires to one or two pins with a letter next to it
+* Connect a laptop to the bluetooth device called "NOT_MAKEY" (name can be changed in line 63 in the code)
+* Open a notepad on the connected laptop
+* Test by touching a probe with one finger, while touching the 3V3 with the other finger. The principle is the same as makey makey, but here the resistors are connected as a pull-up resistor (keeps the signal high until a change is registered), so you touch one of the pins AND 3V3 (instead of one of the pins and GND as you would on the makey makey).
+
+
+# Previous versions
+
+## v1 via fablab
 
 ## tools
 
@@ -116,72 +215,7 @@ Solder resistors & connectors as per board layout
 
 <img src="./images/soldered_top.jpeg" alt="top, soldered" width="400">
 
-
-
-## programming the ESP
-
-What the program does.... bla bla bla
-
-### Select the board & port
-
-### Compile the code to check libs are working
-
-### Upload to the board
-
-### Connect to device via Bluetooth
-
-### Check the serial monitor
-
-### Open a notepad to test
-
-
-
-## bringing it all together
-
-Connect the ESP to the shield, taking care the orientation is correct. 
-
-Test by touching a resistor pad with one finger, while touching the 3V3 with the other finger. The principle is the same as makey makey, but here the resistors are connected as a pull-up resistor (keeps the signal high until a change is registered), so you touch 3V3 instead of GND.
-
-[TEST VIDEO HERE]
-
-
-# v2 via Aisler board house
-
 ## wishes based on v.1
 
 * pads are very small, not handy. Add second row of connector pins instead? (saves space)
 * bigger footprint for resistors (min .8mm drill holes, thicked pads)
-
-
-## bill of materials v.2 
-
-* an ESP32 WROOM devkit, e.g. [this one from Espressif](https://www.espressif.com/en/products/modules/esp32) €14,49 at [Reichelt](https://www.reichelt.nl/nl/nl/entwicklungsboard-esp32-wroom-32e-esp32devkitc32e-p341303.html?&trstct=pos_1&nbc=1)
-* mini usb programming cable e.g. [this one at kiwi](https://www.kiwi-electronics.com/nl/microusb-kabel-usb-a-naar-micro-b-15cm-3240?search=usb-A%20naar%20micro-b) €1,25
-* 4x single row break-away female header strips (you need 4x a single row strips of 15 positions) e.g. [this one](https://www.reichelt.nl/nl/nl/vrouwelijke-connector-2-54mm-1x20-scheidbaar-vertind-fis-bl1-20-z-p283794.html?&nbc=1) at Reichelt €1,22 each
-* 14x 22Mohm resistors e.g. [this one](https://nl.farnell.com/yageo/hhv-25jt-52-22m/res-22m-5-250mw-axial-metal-film/dp/1779371?st=22m%20ohm%20resistor) at Farnell €0,07 each. These can be hard to find in DIY shops you might need to look at Farnell, Mouser, or get some from China :(
-* 14x (or more) MM dupont jumper wires to access the pins
-* alligator clips to connect connective stuff to the board. 
-
-## schematic
-
-The schematic is the same
-
-<img src="./images/schematic.png" alt="schematic v2" width="500"> 
-
-## board design
-
-The silkscreen is a bit more elaborate so you can see what character corresponds with which pin in the code.
-
-<img src="./images/bot_aisler.png" alt="schematic v2" width="500"> 
-
-<img src="./images/top_aisler.png" alt="schematic v2" width="500"> 
-
-## board house link
-
-[https://aisler.net/p/JORJIJIP](https://aisler.net/p/JORJIJIP)
-
-## soldering
-
-For this board, you'll need to have the inner 2 connector rows facing down to connect to the ESP32 
-
-The outer two connector rows are facing up, to give access to the pins via jumper wires
