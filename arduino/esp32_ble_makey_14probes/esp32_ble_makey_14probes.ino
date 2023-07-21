@@ -28,7 +28,7 @@
                                  +----ESP32----+
                                  |     usb     |
                                  | 3V3     VIN |
-                                 | GND     GND |
+               White LED cathode | GND     GND | ------------> TOUCH PROBE TO GROUND
   left | A | = 3V3 <---/\/\/\--- | D15     D13 | ---/\/\/\---> 3v3 = N | change font
                     BUILTIN LED  | D2      D12 | ---/\/\/\---> 3V3 = P | go to next block
   Right| Q | = 3V3 <---/\/\/\--- | D4      D14 | ---/\/\/\---> 3V3 = T | generate PDF
@@ -41,7 +41,7 @@
                                  | RX0     D34 | ---/\/\/\---> 3V3 = SPACE | zoom out
                                  | TX0     D39 | ---/\/\/\---> 3V3 = W | move down
                                  | D22     D36 | ---/\/\/\---> 3V3 = S | move up
-                                 | D23      EN |
+                 White LED anode | D23      EN |
                                  +-------------+
 */
 
@@ -61,7 +61,7 @@ const int ReleasedMinThreshold = 2700;
 const byte PinCount = 14;
 
 // how esp shows up in bluetooth device list
-#define DEVICE_NAME "NOT_MAKEY"
+#define DEVICE_NAME "NOT_YOUR_MAKEY"
 
 // array w numbers of all 14 pins with ADC (pin2 doesnt work w BLE)
 const byte InputPins[PinCount] = {15, 4, 13, 12, 14, 27, 26, 25, 33, 32, 35, 34, 39, 36}; // ONLY ADC PINS!
@@ -69,7 +69,8 @@ int buttonState[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int prevButtonState[] = {LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW, LOW};
 const char KeyCodes[PinCount] = {'a', 'q', 'n', 'p', 't', 'r', 'y', 'e', 'i', 'm', 'u', ' ', 'w', 's'};
 
-const int ledPin =  2;      // builtin LED on esp32
+const int ledPin =  23
+;      // builtin LED on esp32
 int delayTime = 100;
 
 struct TouchInput {

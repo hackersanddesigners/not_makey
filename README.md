@@ -7,7 +7,7 @@ On the board you can see which pins are connected to which letter. Pins without 
 To send a letter to the laptop: 
 - connect laptop to bluetooth device "NOT_MAKEY" (esp and shield should be connected to a power source)
 - open a textpad on the laptop
-- touch a probe connected to one of the letter pins, and a probe connected to 3V3 to send a letter via Bluetooth
+- touch a probe connected to one of the letter pins, and a probe connected to GND to send a letter via Bluetooth
 
 ## acknowledgments
 
