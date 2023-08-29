@@ -61,7 +61,7 @@ const int ReleasedMinThreshold = 2700;
 const byte PinCount = 14;
 
 // how esp shows up in bluetooth device list
-#define DEVICE_NAME "NOT_MAKEY"
+#define DEVICE_NAME "TESTMAKEY1"
 
 // array w numbers of all 14 pins with ADC (pin2 doesnt work w BLE)
 const byte InputPins[PinCount] = {15, 4, 13, 12, 14, 27, 26, 25, 33, 32, 35, 34, 39, 36}; // ONLY ADC PINS!
